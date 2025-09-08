@@ -38,7 +38,6 @@ Visage is a modern, responsive web application built with Next.js that serves as
 
 ## ✨ Coming Soon
 
--   **Adventure Log & On-Demand Generation**: Review your past choices in Adventurer mode and then generate all the scene and character images for your completed adventure at once.
 -   **Stability API Integration**: Integrate Stability AI to provide users with more powerful and flexible image generation options, helping to manage API quotas.
 -   **Narrator for Story Mode**: Bring your stories to life with AI-powered narration.
 -   **Story Soundtracks**: Generate a unique, AI-powered musical score to accompany your stories, enhancing the mood and atmosphere of the narrative.

@@ -1,0 +1,9 @@
+# This file configures the build and deployment settings for Netlify.
+# It uses the official Next.js plugin to ensure all features work correctly.
+
+[build]
+  command = "next build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

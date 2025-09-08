@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css2?family=Slackey&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fascinate+Inline&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: hsl(var(--background));
+  background-image: radial-gradient(circle at 1px 1px, hsl(var(--border)) 1px, transparent 0);
+  background-size: 24px 24px;
+  color: #e5e7eb;
+}
+
+@layer base {
+  :root {
+    /* Obsidian, Electric Pink, Neon Green Theme */
+    --background: 240 12% 6%; /* Deep Obsidian */
+    --foreground: 0 0% 98%;
+    
+    --card: 240 10% 10%;
+    --card-foreground: 0 0% 98%;
+    
+    --popover: 240 10% 10%;
+    --popover-foreground: 0 0% 98%;
+    
+    --primary: 320 98% 56%; /* Electric Pink */
+    --primary-foreground: 0 0% 98%;
+    
+    --secondary: 240 10% 20%;
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: 240 10% 25%;
+    --muted-foreground: 240 5% 63%;
+    
+    --accent: 320 98% 56% / 0.1; /* Pink accent */
+    --accent-foreground: 0 0% 98%;
+    
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 240 10% 25%;
+    --input: 240 10% 15%;
+    
+    --ring: 320 98% 56%; /* Electric Pink for focus rings */
+    
+    --radius: 0.5rem;
+    
+    --highlight-green: 172 100% 32%; /* The user's green */
+    --electric-pink: 320 98% 56%;
+  }
+
+  .dark {
+    /* Same as root for a consistent dark theme */
+    --background: 240 12% 6%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 10%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 10%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 320 98% 56%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 10% 20%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 10% 25%;
+    --muted-foreground: 240 5% 63%;
+    --accent: 320 98% 56% / 0.1;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 10% 25%;
+    --input: 240 10% 15%;
+    --ring: 320 98% 56%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* New layout styles for collapsible sidebar */
+.main-grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem; /* Reduced gap for mobile */
+}
+
+@media (min-width: 768px) { /* md breakpoint */
+    .main-grid-container {
+        gap: 2rem;
+        transition: grid-template-columns 300ms ease-in-out;
+    }
+    .main-grid-container.settings-open {
+        grid-template-columns: 420px 1fr;
+    }
+    .main-grid-container.settings-closed {
+        grid-template-columns: 80px 1fr;
+    }
+}
+
+
+/* Styles from user's code */
+.prompt-bar {
+    background-color: hsl(var(--background));
+    border: 1px solid hsl(var(--border));
+    transition: box-shadow 0.2s ease-in-out;
+}
+.prompt-bar:focus-within {
+    box-shadow: 0 0 0 2px hsl(var(--ring));
+}
+
+.control-btn {
+    width: 70px;
+    text-align: center;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0.375rem; /* rounded-md */
+    font-size: 0.875rem; /* text-sm */
+    line-height: 1.25rem;
+    font-weight: 500; /* font-medium */
+    transition: all 0.2s ease-in-out;
+    border-width: 1px;
+    transform: scale(1);
+}
+ .control-btn:active {
+    transform: scale(0.95);
+    transition-duration: 100ms;
+}
+.control-btn-active {
+    background-image: linear-gradient(to right, hsl(var(--electric-pink)), hsl(var(--primary)));
+    color: hsl(var(--primary-foreground));
+    border-color: transparent;
+    font-weight: 600;
+    box-shadow: 0 4px 20px -5px hsl(var(--primary) / 0.5);
+}
+.control-btn-inactive {
+    background-color: hsl(var(--secondary));
+    border-color: hsl(var(--border));
+    color: hsl(var(--muted-foreground));
+}
+.control-btn-inactive:hover {
+    background-color: hsl(var(--border));
+    color: hsl(var(--foreground));
+}
+
+select:focus, input:focus {
+    outline: none;
+}
+
+/* Generate Button Style */
+.generate-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.2s ease-in-out;
+    background-color: hsl(var(--highlight-green));
+    color: #111827; /* Dark text for contrast on green */
+    border: none;
+    box-shadow: 0 4px 20px -5px hsl(var(--highlight-green) / 0.5);
+}
+.generate-btn:hover {
+    filter: brightness(1.1);
+}
+.generate-btn:active {
+    transform: scale(0.97);
+    filter: brightness(1);
+    box-shadow: 0 2px 10px -5px hsl(var(--highlight-green) / 0.5);
+}
+
+/* Splash Screen Animation */
+.main-app-container {
+  transition: opacity 800ms ease-in-out;
+}
+
+.splash-logo-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0;
+  transform-origin: top left;
+  transition: transform 800ms cubic-bezier(0.4, 0, 0.2, 1), opacity 500ms;
+}
+.splash-logo-group.mounted {
+  opacity: 1;
+}
+.splash-logo-group.exiting {
+  /* Final position matches p-8 (2rem) and scales down. */
+  /* This calculation moves the element from viewport center to the top-left corner. */
+  transform: translate(calc(-50vw + 2rem), calc(-50vh + 2rem)) scale(0.32);
+}
+
+/* Fix for mobile settings panel collapse */
+@media (max-width: 767.98px) {
+  .settings-accordion-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-in-out;
+  }
+
+  .settings-accordion-wrapper > div {
+    overflow: hidden;
+  }
+  
+  .main-grid-container.settings-open .settings-accordion-wrapper {
+    grid-template-rows: 1fr;
+  }
+}
+
+/* On desktop, we still use the opacity/width transition */
+@media (min-width: 768px) {
+    .settings-accordion-wrapper {
+        transition: opacity 150ms ease-in-out;
+    }
+    .main-grid-container.settings-closed .settings-accordion-wrapper {
+        opacity: 0;
+        pointer-events: none;
+    }
+    .main-grid-container.settings-open .settings-accordion-wrapper {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+/* Kids Mode Styles */
+.kids-mode-option-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.75rem;
+}
+
+.kids-mode-option-btn {
+    @apply relative h-24 flex flex-col items-center justify-center gap-2 border-2 text-base rounded-lg transition-all;
+    @apply bg-card border-border text-foreground;
+}
+.kids-mode-option-btn:hover {
+    @apply border-primary/50;
+}
+.kids-mode-option-btn:disabled {
+    @apply opacity-50 cursor-not-allowed;
+}
+.kids-mode-option-btn.selected {
+    @apply border-primary bg-primary/20 text-primary;
+}
+
+.selection-counter {
+    position: absolute;
+    bottom: 2px;
+    left: 2px;
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border-radius: 9999px;
+    width: 1.25rem;
+    height: 1.25rem;
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+    text-align: center;
+    border: 1px solid hsl(var(--card));
+}
+
+.kids-mode-generate-btn {
+    @apply h-16 rounded-full bg-primary px-10 text-2xl text-primary-foreground shadow-lg hover:bg-primary/90 transition-transform active:scale-95;
+}
+
+/* Kid-Friendly Theme */
+.kids-theme {
+  font-family: 'Slackey', cursive;
+  --background: 210 40% 98%;    /* Almost white, soft blue tint */
+  --foreground: 220 15% 25%;    /* Dark Slate Blue */
+  
+  --card: 0 0% 100%;            /* White */
+  --card-foreground: 220 15% 25%;
+  
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 15% 25%;
+  
+  --primary: 150 70% 45%;      /* Bright, friendly Sea Green */
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 45 90% 90%;      /* Soft, light yellow */
+  --secondary-foreground: 45 50% 30%;
+  
+  --muted: 210 40% 92%;
+  --muted-foreground: 220 10% 50%;
+  
+  --accent: 150 70% 45% / 0.1;
+  --accent-foreground: 150 70% 40%;
+  
+  --destructive: 0 80% 60%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --border: 210 40% 88%;
+  --input: 210 40% 94%;
+  
+  --ring: 150 70% 45%;
+
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  background-image: none; /* Optional: remove dot grid for kids mode */
+}
+
+
+/* Story Mode Theme */
+.story-theme {
+  font-family: 'Lexend', sans-serif;
+  --background: 25 30% 8%;     /* Rich, dark brown */
+  --foreground: 35 30% 90%;     /* Off-white, parchment */
+  
+  --card: 25 30% 12%;           /* Slightly lighter brown */
+  --card-foreground: 35 30% 90%;
+  
+  --popover: 25 30% 12%;
+  --popover-foreground: 35 30% 90%;
+  
+  --primary: 40 90% 55%;       /* Gold */
+  --primary-foreground: 25 30% 8%; /* Dark brown for contrast on gold */
+  
+  --secondary: 35 20% 25%;      /* Muted, darker brown */
+  --secondary-foreground: 35 30% 80%;
+  
+  --muted: 35 20% 20%;
+  --muted-foreground: 35 20% 60%;
+  
+  --accent: 40 90% 55% / 0.1;
+  --accent-foreground: 40 90% 65%;
+  
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 98%;
+  
+  --border: 35 25% 20%;
+  --input: 35 25% 15%;
+  
+  --ring: 40 90% 55%;
+
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  background-image: none;
+}
+
+/* Splash screen button overrides */
+.kids-mode-splash-btn {
+    background-color: hsl(150 70% 45%) !important;
+    color: white !important;
+}
+.kids-mode-splash-btn:hover {
+    background-color: hsl(150 70% 50%) !important;
+}
+.story-mode-splash-btn {
+    background-color: hsl(40 90% 55%) !important;
+    color: hsl(25 30% 8%) !important;
+}
+.story-mode-splash-btn:hover {
+    background-color: hsl(40 90% 60%) !important;
+}
