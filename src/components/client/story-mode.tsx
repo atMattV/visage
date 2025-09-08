@@ -1255,7 +1255,7 @@ export default function StoryMode() {
                             <SelectItem value="imagen-3.0-generate-002">
                                 <div>Imagen 3</div>
                             </SelectItem>
-                            <SelectItem value="imagen-4.0-generate-preview-06-06">
+                            <SelectItem value="imagen-4.0-ultra-generate-001">
                                 <div>Imagen 4 <span className="text-muted-foreground">(Preview)</span></div>
                             </SelectItem>
                         </SelectContent>
